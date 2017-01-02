@@ -40,48 +40,48 @@
 
 /**
  Returns the results for an XPath selector.
- 
+
  @param XPath The XPath selector
- 
+
  @return An enumerable collection of results.
  */
-- (id <NSFastEnumeration>)XPath:(NSString *)XPath;
+- (id <NSFastEnumeration> _Nullable)XPath:(NSString *_Nullable)XPath;
 
 /**
  Returns the result for an XPath selector that contains XPath function.
- 
+
  @param XPath The XPath selector
- 
+
  @return The function result
  */
-- (ONOXPathFunctionResult *)functionResultByEvaluatingXPath:(NSString *)XPath;
+- (ONOXPathFunctionResult *_Nullable)functionResultByEvaluatingXPath:(NSString *_Nonnull)XPath;
 
 /**
  @deprecated Use `enumerateElementsWithXPath:usingBlock:` instead
  */
-- (void)enumerateElementsWithXPath:(NSString *)XPath
-                             block:(void (^)(ONOXMLElement *element))block DEPRECATED_ATTRIBUTE;
+- (void)enumerateElementsWithXPath:(NSString *_Nonnull)XPath
+                             block:(nullable void (^)(ONOXMLElement *_Nonnull element))block DEPRECATED_ATTRIBUTE;
 
 /**
  Enumerate elements matching an XPath selector.
- 
+
  @param XPath The XPath selector
  @param block A block that is executed for each result. This block has no return value and takes three arguments:
-    element: The enumerated element.
-    idx: The index of the current item.
-    stop: The block can set the value to `YES` to stop further processing of the elements. The stop argument is an out-only argument. You should only ever set this BOOL to `YES` within the block.
+ element: The enumerated element.
+ idx: The index of the current item.
+ stop: The block can set the value to `YES` to stop further processing of the elements. The stop argument is an out-only argument. You should only ever set this BOOL to `YES` within the block.
  */
-- (void)enumerateElementsWithXPath:(NSString *)XPath
-                        usingBlock:(void (^)(ONOXMLElement *element, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateElementsWithXPath:(NSString *_Nonnull)XPath
+                        usingBlock:(nullable void (^)(ONOXMLElement *_Nonnull element, NSUInteger idx, BOOL *_Nonnull stop))block;
 
 /**
  Returns the first elements matching an XPath selector, or `nil` if there are no results.
- 
+
  @param XPath The XPath selector
- 
+
  @return The child element.
  */
-- (ONOXMLElement *)firstChildWithXPath:(NSString *)XPath;
+- (ONOXMLElement *_Nullable)firstChildWithXPath:(NSString *_Nonnull)XPath;
 
 ///---------------------------
 /// @name Searching with CSS
@@ -94,34 +94,34 @@
 
  @return An enumerable collection of results.
  */
-- (id <NSFastEnumeration>)CSS:(NSString *)CSS;
+- (id <NSFastEnumeration> _Nullable)CSS:(NSString *_Nonnull)CSS;
 
 /**
  @deprecated Use `enumerateElementsWithCSS:usingBlock:` instead
  */
-- (void)enumerateElementsWithCSS:(NSString *)CSS
-                           block:(void (^)(ONOXMLElement *element))block DEPRECATED_ATTRIBUTE;
+- (void)enumerateElementsWithCSS:(NSString *_Nonnull)CSS
+                           block:(nullable void (^)(ONOXMLElement *_Nonnull element))block DEPRECATED_ATTRIBUTE;
 
 /**
  Enumerate elements matching a CSS selector.
- 
+
  @param CSS The CSS selector
  @param block A block that is executed for each result. This block has no return value and takes three arguments:
-    element: the enumerated element.
-    idx: the index of the current item.
-    stop: the block can set the value to `YES` to stop further processing of the elements. The stop argument is an out-only argument. You should only ever set this BOOL to `YES` within the block.
+ element: the enumerated element.
+ idx: the index of the current item.
+ stop: the block can set the value to `YES` to stop further processing of the elements. The stop argument is an out-only argument. You should only ever set this BOOL to `YES` within the block.
  */
-- (void)enumerateElementsWithCSS:(NSString *)CSS
-                      usingBlock:(void (^)(ONOXMLElement *element, NSUInteger idx, BOOL *stop))block;
+- (void)enumerateElementsWithCSS:(NSString *_Nonnull)CSS
+                      usingBlock:(nullable void (^)(ONOXMLElement *_Nonnull element, NSUInteger idx, BOOL *_Nonnull stop))block;
 
 /**
  Returns the first elements matching a CSS selector, or `nil` if there are no results.
- 
+
  @param CSS The CSS selector
- 
+
  @return The child element.
  */
-- (ONOXMLElement *)firstChildWithCSS:(NSString *)CSS;
+- (ONOXMLElement *_Nullable)firstChildWithCSS:(NSString *_Nonnull)CSS;
 
 @end
 
@@ -139,7 +139,7 @@
 /**
  The XML version.
  */
-@property (readonly, nonatomic, copy) NSString *version;
+@property (readonly, nonatomic, copy, nonnull) NSString *version;
 
 /**
  The string encoding for the document. This is 0 if no encoding is set, or it cannot be calculated.
@@ -154,7 +154,7 @@
 /**
  The root element of the document.
  */
-@property (readonly, nonatomic, strong) ONOXMLElement *rootElement;
+@property (readonly, nonatomic, strong, nullable) ONOXMLElement *rootElement;
 
 ///------------------------------------
 /// @name Accessing Document Formatters
@@ -163,14 +163,14 @@
 /**
  The formatter used to determine `numberValue` for elements in the document. By default, this is an `NSNumberFormatter` instance with `NSNumberFormatterDecimalStyle`.
  */
-@property (readonly, nonatomic, strong) NSNumberFormatter *numberFormatter;
+@property (readonly, nonatomic, strong, nonnull) NSNumberFormatter *numberFormatter;
 
 /**
  The formatter used to determine `dateValue` for elements in the document. By default, this is an `NSDateFormatter` instance configured to accept ISO 8601 formatted timestamps.
- 
+
  @see http://en.wikipedia.org/wiki/ISO_8601
  */
-@property (readonly, nonatomic, strong) NSDateFormatter *dateFormatter;
+@property (readonly, nonatomic, strong, nonnull) NSDateFormatter *dateFormatter;
 
 ///-----------------------------
 /// @name Creating XML Documents
@@ -178,16 +178,16 @@
 
 /**
  Creates and returns an instance of ONOXMLDocument from an XML string.
- 
+
  @param string The XML string.
  @param encoding The string encoding.
  @param error The error error that occured while parsing the XML, or `nil`.
- 
+
  @return An `ONOXMLDocument` with the contents of the specified XML string.
  */
-+ (instancetype)XMLDocumentWithString:(NSString *)string
-                             encoding:(NSStringEncoding)encoding
-                                error:(NSError * __autoreleasing *)error;
++ (instancetype _Nullable)XMLDocumentWithString:(NSString *_Nullable)string
+                                       encoding:(NSStringEncoding)encoding
+                                          error:(NSError *_Nullable __autoreleasing *_Nullable)error;
 
 /**
  Creates and returns an instance of ONOXMLDocument from XML data.
@@ -197,8 +197,8 @@
 
  @return An `ONOXMLDocument` with the contents of the specified XML data.
  */
-+ (instancetype)XMLDocumentWithData:(NSData *)data
-                              error:(NSError * __autoreleasing *)error;
++ (instancetype _Nullable)XMLDocumentWithData:(NSData *_Nullable)data
+                                        error:(NSError *_Nullable __autoreleasing *_Nullable)error;
 
 ///------------------------------
 /// @name Creating HTML Documents
@@ -213,9 +213,9 @@
 
  @return An `ONOXMLDocument` with the contents of the specified HTML string.
  */
-+ (instancetype)HTMLDocumentWithString:(NSString *)string
-                              encoding:(NSStringEncoding)encoding
-                                 error:(NSError * __autoreleasing *)error;
++ (instancetype _Nullable)HTMLDocumentWithString:(NSString *_Nullable)string
+                                        encoding:(NSStringEncoding)encoding
+                                           error:(NSError *_Nullable __autoreleasing *_Nullable)error;
 
 /**
  Creates and returns an instance of ONOXMLDocument from HTML data.
@@ -225,8 +225,8 @@
 
  @return An `ONOXMLDocument` with the contents of the specified HTML string.
  */
-+ (instancetype)HTMLDocumentWithData:(NSData *)data
-                               error:(NSError * __autoreleasing *)error;
++ (instancetype _Nullable)HTMLDocumentWithData:(NSData *_Nullable)data
+                                         error:(NSError *_Nullable __autoreleasing *_Nullable)error;
 
 ///------------------------------------------
 /// @name Defining Default Namespace Prefixes
@@ -234,12 +234,12 @@
 
 /**
  Define a prefix for a default namespace.
- 
+
  @param prefix The prefix name
  @param ns The default namespace URI that declared in XML Document
  */
-- (void)definePrefix:(NSString *)prefix
- forDefaultNamespace:(NSString *)ns;
+- (void)definePrefix:(NSString *_Nullable)prefix
+ forDefaultNamespace:(NSString *_Nonnull)ns;
 
 @end
 
@@ -253,21 +253,21 @@
 /**
  The document containing the element.
  */
-@property (readonly, nonatomic, weak) ONOXMLDocument *document;
+@property (readonly, nonatomic, weak, nullable) ONOXMLDocument *document;
 
 /**
  The element's namespace.
  */
 #ifdef __cplusplus
-@property (readonly, nonatomic, copy) NSString *ns;
+@property (readonly, nonatomic, copy, nullable) NSString *ns;
 #else
-@property (readonly, nonatomic, copy) NSString *namespace;
+@property (readonly, nonatomic, copy, nullable) NSString *namespace;
 #endif
 
 /**
  The element's tag.
  */
-@property (readonly, nonatomic, copy) NSString *tag;
+@property (readonly, nonatomic, copy, nullable) NSString *tag;
 
 /**
  The element's line number
@@ -281,16 +281,16 @@
 /**
  All attributes for the element.
  */
-@property (readonly, nonatomic, strong) NSDictionary *attributes;
+@property (readonly, nonatomic, strong, nullable) NSDictionary *attributes;
 
 /**
  Returns the value for the specified attribute.
- 
+
  @param attribute The attribute name.
- 
+
  @return The associated value.
  */
-- (id)valueForAttribute:(NSString *)attribute;
+- (id _Nullable)valueForAttribute:(NSString *_Nonnull)attribute;
 
 /**
  Returns the value for an attribute in a particular namespace.
@@ -300,8 +300,8 @@
 
  @return The associated value.
  */
-- (id)valueForAttribute:(NSString *)attribute
-            inNamespace:(NSString *)ns;
+- (id _Nullable)valueForAttribute:(NSString *_Nonnull)attribute
+                      inNamespace:(NSString *_Nullable)ns;
 
 ///----------------------------------------------------
 /// @name Accessing Parent, Child, and Sibling Elements
@@ -310,31 +310,31 @@
 /**
  The element's parent element.
  */
-@property (readonly, nonatomic, strong) ONOXMLElement *parent;
+@property (readonly, nonatomic, strong, nullable) ONOXMLElement *parent;
 
 /**
  The element's children elements.
  */
-@property (readonly, nonatomic, strong) NSArray *children;
+@property (readonly, nonatomic, strong, nullable) NSArray *children;
 
 /**
  The element's previous sibling.
  */
-@property (readonly, nonatomic, strong) ONOXMLElement *previousSibling;
+@property (readonly, nonatomic, strong, nullable) ONOXMLElement *previousSibling;
 
 /**
  The element's next sibling.
  */
-@property (readonly, nonatomic, strong) ONOXMLElement *nextSibling;
+@property (readonly, nonatomic, strong, nullable) ONOXMLElement *nextSibling;
 
 /**
  Returns the first child element with the specified tag, or `nil` if no such element exists.
- 
+
  @param tag The tag name.
- 
+
  @return The child element.
  */
-- (ONOXMLElement *)firstChildWithTag:(NSString *)tag;
+- (ONOXMLElement *_Nullable)firstChildWithTag:(NSString *_Nonnull)tag;
 
 /**
  Returns the first child element with a tag in a particular namespace, or `nil` if no such element exists.
@@ -344,8 +344,8 @@
 
  @return The child element.
  */
-- (ONOXMLElement *)firstChildWithTag:(NSString *)tag
-                         inNamespace:(NSString *)ns;
+- (ONOXMLElement *_Nullable)firstChildWithTag:(NSString *_Nonnull)tag
+                                  inNamespace:(NSString *_Nullable)ns;
 
 /**
  Returns all children elements with the specified tag.
@@ -354,7 +354,7 @@
 
  @return The children elements.
  */
-- (NSArray *)childrenWithTag:(NSString *)tag;
+- (NSArray *_Nullable)childrenWithTag:(NSString *_Nonnull)tag;
 
 /**
  Returns all children elements with the specified tag.
@@ -364,8 +364,8 @@
 
  @return The children elements.
  */
-- (NSArray *)childrenWithTag:(NSString *)tag
-                 inNamespace:(NSString *)ns;
+- (NSArray *_Nullable)childrenWithTag:(NSString *_Nonnull)tag
+                          inNamespace:(NSString *_Nullable)ns;
 
 ///------------------------
 /// @name Accessing Content
@@ -378,24 +378,24 @@
 
 /**
  A string representation of the element's value.
- 
+
  @return The string value.
  */
-- (NSString *)stringValue;
+- (NSString *_Nullable)stringValue;
 
 /**
  A number representation of the element's value, which is generated from the document's `numberFormatter` property.
- 
+
  @return The number value;
  */
-- (NSNumber *)numberValue;
+- (NSNumber *_Nullable)numberValue;
 
 /**
  A date representation of the element's value, which is generated from the document's `dateFormatter` property.
- 
+
  @return The date value.
  */
-- (NSDate *)dateValue;
+- (NSDate *_Nullable)dateValue;
 
 ///--------------------------------------
 /// @name Subscripted Convenience Methods
@@ -403,21 +403,21 @@
 
 /**
  Returns the child element at the specified index.
- 
+
  @param idx The index.
- 
+
  @return The child element.
  */
-- (id)objectAtIndexedSubscript:(NSUInteger)idx;
+- (id _Nonnull)objectAtIndexedSubscript:(NSUInteger)idx;
 
 /**
  Returns the value for the attribute with the specified key.
- 
+
  @param key The key.
- 
+
  @return The attribute value, or `nil` if the attribute is not defined.
  */
-- (id)objectForKeyedSubscript:(id)key;
+- (id _Nullable)objectForKeyedSubscript:(id _Nonnull)key;
 
 @end
 
@@ -439,7 +439,7 @@
 /**
  represents `stringval` in `xmlXPathObject`
  */
-@property (readonly, nonatomic, copy) NSString *stringValue;
+@property (readonly, nonatomic, copy, nullable) NSString *stringValue;
 
 @end
 
@@ -459,4 +459,4 @@
  `ONOErrorDomain`
  Ono errors. Error codes for `ONOErrorDomain` are not currently defined.
  */
-extern NSString * const ONOErrorDomain;
+extern NSString *_Nullable const ONOErrorDomain;
