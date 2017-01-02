@@ -381,7 +381,7 @@
 
  @return The string value.
  */
-- (NSString *_Nullable)stringValue;
+- (NSString *_Nonnull)stringValue;
 
 /**
  A number representation of the element's value, which is generated from the document's `numberFormatter` property.
